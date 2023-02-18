@@ -4,6 +4,8 @@
 
 TFT_HX8357 tft = TFT_HX8357();  // Invoke custom library
 
+char bufferString[32];
+
 void setup() {  
   pinMode(BOTON,INPUT);
 
@@ -14,13 +16,19 @@ void setup() {
 }
 
 void loop() {
-  //CONCEPTO IPO
+  //CONCEPTO IPO => INPUT, PROCESS, OUTPUT
 
   //ENTRADAS
   int p=digitalRead(BOTON);
+  int analogo=analogRead(A0);
+
   //PROCESO
   //SALIDAS
   tft.setCursor(0,0);
-  tft.print("Pulsador=");
-  tft.print(p);
+  sprintf(bufferString,"Pulsador=%d",p);
+  tft.println(bufferString);  
+
+  sprintf(bufferString,"Analogo=%-4d",analogo);
+  tft.println(bufferString);
+
 }
